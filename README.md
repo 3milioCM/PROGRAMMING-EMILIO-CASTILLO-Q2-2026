@@ -71,14 +71,6 @@ the integration of <f_x> is <area>
 
 ---
 
-## Flowchart
-
-The diagram below summarizes the full program logic:
-
-![Flowchart](FlowChart.png)
-
----
-
 ## Environment & Tools
 
 - **Language:** Python 3.x
