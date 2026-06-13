@@ -1,0 +1,35 @@
+INPUT
+GET a, b, f_x, method from user
+IF "pi" in a THEN a ← eval(a substituting pi) ELSE a ← float(a)
+IF "pi" in b THEN b ← eval(b substituting pi) ELSE b ← float(b)
+
+PROCESS
+n ← 1000
+h ← (b - a) / n
+area ← 0.0
+constant ← 0
+shift ← 0
+
+IF method = "RRM" THEN
+shift ← 1
+ELSE IF method = "MRM" THEN
+constant ← h / 2
+ELSE IF method = "TRAP" THEN
+f_a ← f_x(a)
+f_b ← f_x(b)
+area ← (h / 2) * (f_a + f_b)
+FOR i FROM 1 TO n - 1 DO
+xi ← a + i * h
+area ← area + (h / 2) * 2 * f_x(xi)
+ENDFOR
+ENDIF
+
+IF method != "TRAP" THEN
+FOR i FROM shift TO n + shift - 1 DO
+xi ← a + i * h
+area ← area + h * f_x(xi + constant)
+ENDFOR
+ENDIF
+
+OUTPUT
+DISPLAY "The integration of " + f_x + " is " + area
