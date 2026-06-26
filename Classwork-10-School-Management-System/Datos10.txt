@@ -1,0 +1,64 @@
+// definir datos
+materias <- ('matemáticas', 'programación', 'inglés')
+
+usuarios <- {
+    'jperez': {'password': '1234', 'rol': 'alumno', 'nombre': 'juan pérez'},
+    'mlopez': {'password': '1234', 'rol': 'maestro', 'nombre': 'maría lópez'},
+    'rgarcia': {'password': '1234', 'rol': 'coordinador', 'nombre': 'rosa garcía'}
+}
+
+calificaciones <- {
+    'jperez': {'matemáticas': 8.5, 'programación': 9.0, 'inglés': 7.5}
+}
+
+// 1. login
+mientras verdadero hacer
+    imprimir "usuario: "
+    leer usr
+    imprimir "contraseña: "
+    leer pwd
+    si usr en usuarios y usuarios[usr]['password'] == pwd entonces
+        nombre_actual <- usuarios[usr]['nombre']
+        rol_actual <- usuarios[usr]['rol']
+        salir mientras
+    fin si
+    imprimir "datos incorrectos"
+fin mientras
+
+// 2. menú por rol
+si rol_actual == 'alumno' entonces
+    imprimir "bienvenido " + nombre_actual
+    aprobadas <- set()
+    pendientes <- set()
+    para cada mat en materias hacer
+        nota <- calificaciones[usr][mat]
+        si nota >= 8.0 entonces
+            aprobadas.añadir(mat)
+        sino
+            pendientes.añadir(mat)
+        fin si
+    fin para
+    imprimir "materias aprobadas: " + aprobadas
+    imprimir "materias pendientes: " + pendientes
+
+sino si rol_actual == 'maestro' entonces
+    para cada user, datos en usuarios hacer
+        si datos['rol'] == 'alumno' entonces imprimir user
+    fin para
+    imprimir "qué alumno desea calificar?"
+    leer alumno_sel
+    imprimir "qué materia?"
+    leer mat_sel
+    imprimir "nueva calificación"
+    leer nueva_nota
+    calificaciones[alumno_sel][mat_sel] <- nueva_nota
+    imprimir "calificación actualizada"
+
+sino si rol_actual == 'coordinador' entonces
+    imprimir "lista de maestros:"
+    para cada user, datos en usuarios hacer
+        si datos['rol'] == 'maestro' entonces imprimir datos['nombre']
+    fin para
+    imprimir "materias: " + materias
+    imprimir "calificaciones totales: " + calificaciones
+fin si
