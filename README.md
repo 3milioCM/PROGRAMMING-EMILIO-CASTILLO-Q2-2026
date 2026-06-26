@@ -20,12 +20,17 @@ Este programa realiza la conjugación automática de verbos regulares en españo
 | :--- | :--- | :--- |
 | Verbo en infinitivo | Extracción de raíz/terminación y búsqueda en diccionario | Lista de 6 formas verbales |
 
+##Yo, Emilio Eduardo Castillo Manzano, declaro que NO he utilizado herramientas de Inteligencia Artificial para la elaboración de este trabajo académico. Afirmo que cuento con evidencias físicas y/o digitales que demuestran mi autoría, incluyendo pero no limitándose a: documentos manuscritos, materiales impresos con anotaciones o subrayado, historial de versiones de documentos electrónicos, o commits en repositorios de código.
+
+Reconozco y acepto que el profesor se reserva el derecho de solicitar dichas evidencias en cualquier momento, especialmente cuando existan sospechas o se detecten conductas que atenten contra la integridad académica, tales como plagio o uso no reportado de herramientas de IA.
+
 ## Instrucciones de Uso
 1. Asegúrate de tener Python 3 instalado.
 2. Clona el repositorio: `git clone https://github.com/3milioCM/UPY-PROGRAMMING-EMILIO-CASTILLO-Q2-2026.git`
 3. Navega a la carpeta del proyecto: `cd Classwork-09-Spanish-Verb-Conjugator`
 4. Ejecuta el script: `python spanish_verb_conjugator.py`
 5. Ingresa un verbo en infinitivo cuando el programa lo solicite.
+
 
 ## Ejemplo de Ejecución
 **Input:** `amar`
@@ -38,6 +43,7 @@ nosotros amamos
 vosotros amais
 ellos aman
 
-##Yo, Emilio Eduardo Castillo Manzano, declaro que NO he utilizado herramientas de Inteligencia Artificial para la elaboración de este trabajo académico. Afirmo que cuento con evidencias físicas y/o digitales que demuestran mi autoría, incluyendo pero no limitándose a: documentos manuscritos, materiales impresos con anotaciones o subrayado, historial de versiones de documentos electrónicos, o commits en repositorios de código.
 
-Reconozco y acepto que el profesor se reserva el derecho de solicitar dichas evidencias en cualquier momento, especialmente cuando existan sospechas o se detecten conductas que atenten contra la integridad académica, tales como plagio o uso no reportado de herramientas de IA.
+
+  
+
