@@ -1,0 +1,30 @@
+Inicio
+    // Declaración de estructuras
+    Definir Pronombres[6] ← {"yo", "tu", "el", "nosotros", "vosotros", "ellos"}
+    
+    // Declaración de tabla de terminaciones (Simulación de diccionario)
+    Definir Tabla Terminaciones ← {
+        "ar" ← {"o", "as", "a", "amos", "ais", "an"},
+        "er" ← {"o", "es", "e", "emos", "eis", "en"},
+        "ir" ← {"o", "es", "e", "imos", "is", "en"}
+    }
+
+    Escribir "Ingrese un verbo en infinitivo:"
+    Leer Verbo
+
+    // Procesamiento
+    // Raíz: desde la posición 0 hasta la longitud total - 2
+    Raiz ← Subcadena(Verbo, inicio ← 0, longitud ← Longitud(Verbo) - 2)
+    // Final: los últimos 2 caracteres
+    Final ← Subcadena(Verbo, inicio ← Longitud(Verbo) - 2, longitud ← 2)
+
+    Si Final existe en Tabla Terminaciones Entonces
+        Lista_Conjugacion ← Terminaciones[Final]
+        
+        Para i ← 0 Hasta 5 Hacer
+            Escribir Pronombres[i] + " " + Raiz + Lista_Conjugacion[i]
+        FinPara
+    Sino
+        Escribir "Error: Terminación no válida"
+    FinSi
+Fin
