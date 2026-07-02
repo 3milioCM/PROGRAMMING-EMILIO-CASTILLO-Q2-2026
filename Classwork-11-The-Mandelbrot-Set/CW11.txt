@@ -1,0 +1,34 @@
+#INICIO
+    config <- {}
+    archivo <- ABRIR "config.txt" EN MODO LECTURA
+    
+    PARA CADA linea EN archivo:
+        clave, valor <- DIVIDIR linea POR "="
+        config[clave] <- CONVERTIR_A_FLOAT(valor)
+    CERRAR archivo
+
+    ancho <- CONVERTIR_A_ENTERO(config["ancho"])
+    alto <- CONVERTIR_A_ENTERO(config["alto"])
+    max_iter <- CONVERTIR_A_ENTERO(config["max_iter"])
+
+    salida <- ABRIR "clase.csv" EN MODO ESCRITURA
+    ESCRIBIR "fila,columna,iteraciones" EN salida
+
+    PARA fila <- 0 HASTA alto - 1:
+        PARA columna <- 0 HASTA ancho - 1:
+            real <- config['real_min'] + (columna / ancho) * (config['real_max'] - config['real_min'])
+            imag <- config['imag_min'] + (fila / alto) * (config['imag_max'] - config['imag_min'])
+            c <- COMPLEJO(real, imag)
+            
+            z <- 0 + 0j
+            iteraciones <- 0
+            
+            MIENTRAS (ABS(z) <= 2) Y (iteraciones < max_iter):
+                z <- z * z + c
+                iteraciones <- iteraciones + 1
+            
+            // Uso de + para separar tipos al escribir
+            ESCRIBIR FILA_A_TEXTO(fila) + "," + COLUMNA_A_TEXTO(columna) + "," + ITERACIONES_A_TEXTO(iteraciones) EN salida
+            
+    CERRAR salida
+FIN
