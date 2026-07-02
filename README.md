@@ -1,6 +1,6 @@
 # PROGRAMMING-EMILIO-CASTILLO-Q2-2026
 
-## Classwork-10
+## Classwork-11
 
 * **Repositorio:** UPY-PROGRAMMING-EMILIO-CASTILLO-Q2-2026
 * **Curso:** Programming – Unidad 2 (Q2-2026)
@@ -9,7 +9,7 @@
 
 ## Descripción del Proyecto
 
-Este programa simula una pagina web de una escuela para alumnos, un profesor y un coordinador 
+Este programa ejemplifica una funcion que utiliza un while, for,range y argumentos para moverte en las carpetas.
 
 #Declaracion de IA
 
