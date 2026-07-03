@@ -1,6 +1,6 @@
 # PROGRAMMING-EMILIO-CASTILLO-Q2-2026
 
-## Classwork-11
+## Classwork-12
 
 * **Repositorio:** UPY-PROGRAMMING-EMILIO-CASTILLO-Q2-2026
 * **Curso:** Programming – Unidad 2 (Q2-2026)
@@ -9,7 +9,7 @@
 
 ## Descripción del Proyecto
 
-Este programa ejemplifica una funcion que utiliza un while, for,range y argumentos para moverte en las carpetas.
+Este proyecto completa la visualización del Conjunto de Mandelbrot, transformando datos numéricos en una imagen fractal.
 
 #Declaracion de IA
 
