@@ -1,18 +1,23 @@
-# PROGRAMMING-EMILIO-CASTILLO-Q2-2026
+# Flux: Productivity Intelligence
 
-## Classwork-12
+Flux es un sistema inteligente diseñado para la gestión y priorización de tareas académicas, permitiendo a los estudiantes organizar sus sesiones de estudio mediante una lógica de procesamiento automatizada.
 
-* **Repositorio:** UPY-PROGRAMMING-EMILIO-CASTILLO-Q2-2026
-* **Curso:** Programming – Unidad 2 (Q2-2026)
-* **Lenguaje:** Python 3.x
-* **Control de Versiones:** Git | **Hosting:** GitHub
+## Estructura del Proyecto
+- `/assets`: Contiene el diagrama de flujo (`flux_flowchart.png`) que ilustra la lógica del sistema.
+- `/docs`: Incluye el pseudocódigo detallado (`pseudocode.md`) del algoritmo.
+- `/logs`: Directorio de auditoría donde se generan los registros de ejecución (`app.log`) en tiempo real.
+- `main.py`: Script principal de la aplicación en Python.
 
-## Descripción del Proyecto
+## Características
+- **Priorización Automática**: Clasifica tareas por nivel de urgencia (Alta/Media/Baja).
+- **Sistema de Auditoría**: Registro automático de eventos, entradas de usuario y errores mediante el módulo `logging`.
+- **Diseño Modular**: Lógica clara basada en un esquema IPO (Input, Process, Output).
 
-Este proyecto completa la visualización del Conjunto de Mandelbrot, transformando datos numéricos en una imagen fractal.
-
-#Declaracion de IA
-
-SI
-  
+## Ejecución
+Para ejecutar el sistema Flux:
+1. Asegúrate de tener instalado Python 3.x.
+2. Clona este repositorio.
+3. Ejecuta el programa en tu terminal:
+   ```bash
+   python main.py
 
