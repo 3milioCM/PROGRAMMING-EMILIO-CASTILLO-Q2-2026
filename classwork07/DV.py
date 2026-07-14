@@ -1,41 +1,48 @@
-def calcular_digito_verificador(rol):
-    # 1. Obtener el rol sin guion ni dígito verificador
-    # Convertimos a string por seguridad y quitamos cualquier espacio
-    rol_str = str(rol).replace("-", "").strip()
-    
-    # 2. Invertir el número
-    rol_invertido = rol_str[::-1]
-    
-    # 3. Multiplicar por la secuencia 2, 3, 4, 5, 6, 7
+import logging
+import os
+
+if not os.path.exists('logs'):
+    os.makedirs('logs')
+
+logging.basicConfig(
+    filename='logs/app.log',
+    level=logging.INFO,
+    format='%(asctime)s — [%(levelname)s] %(message)s'
+)
+
+def calcular_digito_verificador(rol_num):
+    rol_invertido = str(rol_num)[::-1]
     suma = 0
     multiplicador = 2
-    
     for digito in rol_invertido:
         suma += int(digito) * multiplicador
-        
-        # Incrementar multiplicador y reiniciar si pasa de 7
-        multiplicador += 1
-        if multiplicador > 7:
-            multiplicador = 2
-            
-    # 4. Obtener el módulo 11 del resultado
+        multiplicador = 2 if multiplicador == 7 else multiplicador + 1
     modulo = suma % 11
-    
-    # 5. Restar el resultado de 11
-    digito_verificador = 11 - modulo
-    
-    # Manejo de casos especiales (opcional pero recomendado):
-    # Si el resultado es 11, el dígito suele ser 0
-    # Si el resultado es 10, el dígito suele ser 'K'
-    if digito_verificador == 11:
-        return 0
-    elif digito_verificador == 10:
-        return 'K'
-    else:
-        return digito_verificador
+    dv = 11 - modulo
+    if dv == 11: return 0
+    if dv == 10: return 'K'
+    return dv
 
-# Ejemplo de uso:
-rol_input = "201012341"
-dv = calcular_digito_verificador(rol_input)
-print(f"El dígito verificador para {rol_input} es: {dv}")
-print(f"El rol completo es: {rol_input}-{dv}")
+def main():
+    entrada = input("INPUT: ").strip()
+    if entrada.count('-') != 1:
+        print("Rol inválido: No tiene el formato XXXXXXXXX-X")
+        return
+    rol_num, dv_usuario = entrada.split('-')
+    if not rol_num.isdigit():
+        print("Los digitos del rol deben ser numéricos")
+        return
+    if not (dv_usuario.isdigit() or dv_usuario.upper() == 'K'):
+        print("El digito verificador debe ser numérico")
+        return
+    dv_calculado = calcular_digito_verificador(rol_num)
+    if str(dv_calculado) == dv_usuario.upper():
+        print(f"{rol_num}-{dv_usuario.upper()}")
+        logging.info(f"Éxito: {entrada}")
+    else:
+        print(f"Error: El dígito verificador no conicide, se esperaba {dv_calculado}")
+        logging.error(f"Mismatch: {entrada}, esperado {dv_calculado}")
+
+if __name__ == "__main__":
+    main()
+

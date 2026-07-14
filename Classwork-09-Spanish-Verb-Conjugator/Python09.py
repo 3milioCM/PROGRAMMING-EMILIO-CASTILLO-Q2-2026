@@ -1,24 +1,52 @@
-# Definición de estructuras de datos requeridas
-pronombres = ['yo', 'tu', 'el', 'nosotros', 'vosotros', 'ellos']
+import logging
+import os
 
-terminaciones = {
-    'ar': ['o', 'as', 'a', 'amos', 'ais', 'an'],
-    'er': ['o', 'es', 'e', 'emos', 'eis', 'en'],
-    'ir': ['o', 'es', 'e', 'imos', 'is', 'en']
-}
+# Configuración de logs
+if not os.path.exists('logs'): os.makedirs('logs')
+logging.basicConfig(filename='logs/app.log', level=logging.INFO, format='%(asctime)s — %(message)s')
 
-# 1. Input: Pedir el verbo al usuario
-verbo = input("Ingrese verbo: ").lower().strip()
+def main():
+    pronombres = ['Yo', 'Tú', 'Él', 'Nosotros', 'Vosotros', 'Ellos']
+    terminaciones = {
+        'ar': ['o', 'as', 'a', 'amos', 'ais', 'an'],
+        'er': ['o', 'es', 'e', 'emos', 'eis', 'en'],
+        'ir': ['o', 'es', 'e', 'imos', 'is', 'en']
+    }
 
-# 2. Process: Obtener raíz y terminación usando slicing
-raiz = verbo[:-2]
-final = verbo[-2:]
+    # Input crudo para detectar reglas de negocio
+    raw_verbo = input("Ingrese verbo: ")
 
-# 3. Output: Validación y conjugación
-if final in terminaciones:
+    # Caso 23: Regla de mayúsculas
+    if not raw_verbo == raw_verbo.lower():
+        print("El verbo debe escribirse en minúsculas")
+        return
+
+    # Caso 24: Regla de espacios
+    if raw_verbo != raw_verbo.strip():
+        print("El verbo no debe tener espacios extra")
+        return
+
+    verbo = raw_verbo.strip()
+
+    # Caso 20-22: Validación de longitud y tipo
+    if len(verbo) < 3 or not verbo.isalpha():
+        print("El verbo debe terminar en ar, er o ir")
+        return
+
+    raiz = verbo[:-2]
+    final = verbo[-2:]
+
+    # Caso 19: Validación de terminación
+    if final not in terminaciones:
+        print("El verbo debe terminar en ar, er o ir")
+        return
+
+    # Proceso de conjugación
     lista_conjugaciones = terminaciones[final]
-    
     for i in range(len(pronombres)):
         print(f"{pronombres[i]} {raiz}{lista_conjugaciones[i]}")
-else:
-    print("Error: El verbo debe terminar en 'ar', 'er' o 'ir'.")
+    
+    logging.info(f"Conjugación exitosa: {verbo}")
+
+if __name__ == "__main__":
+    main()
