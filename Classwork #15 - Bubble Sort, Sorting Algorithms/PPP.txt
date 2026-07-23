@@ -1,0 +1,128 @@
+Algoritmo OrdenamientoAnimado
+    // ----------------------------------------------------
+    // FUNCIÓN: draw_bars(numbers, selected)
+    // ----------------------------------------------------
+    Procedimiento draw_bars(numbers, selected)
+        Llamar stddraw.clear()
+        n <- longitud(numbers)
+        bar_width <- n / n  // Equivalente a 1.0
+        
+        Para cada i, number en enumerate(numbers) hacer
+            x <- i * bar_width + bar_width / 2
+            Si i está en selected entonces
+                color <- Color Rojo (255, 90, 90)
+            Sino
+                color <- Color Azul (70, 130, 220)
+            Fin Si
+            
+            Llamar stddraw.setPenColor(color)
+            Llamar stddraw.filledRectangle(x - bar_width / 2, 0, bar_width * 0.9, number)
+        Fin Para
+        
+        Llamar stddraw.show(100)
+    Fin Procedimiento
+
+    // ----------------------------------------------------
+    // FUNCIÓN: bubble_sort_animated(numbers)
+    // ----------------------------------------------------
+    Procedimiento bubble_sort_animated(numbers)
+        n <- longitud(numbers)
+        Llamar stddraw.setXscale(-0.1, n)
+        Llamar stddraw.setYscale(-0.5, max(numbers) + 1)
+        
+        Para sweep desde 0 hasta n - 1 hacer
+            swapped <- Falso
+            Para pair desde 0 hasta n - 1 - sweep hacer
+                Llamar draw_bars(numbers, selected=(pair, pair+1))
+                
+                Si numbers[pair] > numbers[pair+1] entonces
+                    Intercambiar(numbers[pair], numbers[pair+1])
+                    swapped <- Verdadero
+                Fin Si
+                
+                Llamar draw_bars(numbers, selected=(pair, pair+1))
+            Fin Para
+            
+            Si no swapped entonces
+                Romper ciclo
+            Fin Si
+        Fin Para
+        
+        Llamar draw_bars(numbers)
+    Fin Procedimiento
+
+    // ----------------------------------------------------
+    // FUNCIÓN: insertion_sort_animated(numbers)
+    // ----------------------------------------------------
+    Procedimiento insertion_sort_animated(numbers)
+        n <- longitud(numbers)
+        Llamar stddraw.setXscale(-0.1, n)
+        Llamar stddraw.setYscale(-0.5, max(numbers) + 1)
+
+        Para i desde 1 hasta n - 1 hacer
+            key <- numbers[i]
+            j <- i - 1
+            
+            // Resaltamos el elemento que vamos a insertar
+            Llamar draw_bars(numbers, selected=(i,))
+            
+            Mientras j >= 0 y numbers[j] > key hacer
+                Llamar draw_bars(numbers, selected=(j, j+1))
+                numbers[j + 1] <- numbers[j]
+                j <- j - 1
+                Llamar draw_bars(numbers, selected=(j+1, j+2))
+            Fin Mientras
+            
+            numbers[j + 1] <- key
+            
+            // Resaltamos dónde quedó insertado finalmente
+            Llamar draw_bars(numbers, selected=(j+1,))
+        Fin Para
+
+        Llamar draw_bars(numbers)
+    Fin Procedimiento
+
+    // ----------------------------------------------------
+    // FUNCIÓN: selection_sort_animated(numbers)
+    // ----------------------------------------------------
+    Procedimiento selection_sort_animated(numbers)
+        n <- longitud(numbers)
+        Llamar stddraw.setXscale(-0.1, n)
+        Llamar stddraw.setYscale(-0.5, max(numbers) + 1)
+
+        Para i desde 0 hasta n - 2 hacer
+            min_index <- i
+            Para j desde i + 1 hasta n - 1 hacer
+                Llamar draw_bars(numbers, selected=(min_index, j))
+                
+                Si numbers[j] < numbers[min_index] entonces
+                    min_index <- j
+                Fin Si
+            Fin Para
+            
+            Si min_index != i entonces
+                Llamar draw_bars(numbers, selected=(i, min_index))
+                Intercambiar(numbers[i], numbers[min_index])
+                Llamar draw_bars(numbers, selected=(i, min_index))
+            Fin Si
+        Fin Para
+
+        Llamar draw_bars(numbers)
+    Fin Procedimiento
+
+    // ----------------------------------------------------
+    // BLOQUE PRINCIPAL (MAIN)
+    // ----------------------------------------------------
+    Inicio Principal
+        // Ejemplo activo: Selection Sort
+        arr3 <- GenerarListaAleatoria(10, entre 0 y 100)
+        Imprimir("Before selection sort: ", arr3)
+        
+        Llamar selection_sort_animated(arr3)
+        
+        Imprimir("After selection sort: ", arr3)
+        
+        // Mantiene la ventana abierta al final
+        Llamar stddraw.show()
+    Fin Principal
+Fin Algoritmo
