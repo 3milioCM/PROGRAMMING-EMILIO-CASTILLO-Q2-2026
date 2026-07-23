@@ -1,23 +1,19 @@
-# Flux: Productivity Intelligence
+# Classwork 15 - Sorting Algorithms
 
-Flux es un sistema inteligente diseñado para la gestión y priorización de tareas académicas, permitiendo a los estudiantes organizar sus sesiones de estudio mediante una lógica de procesamiento automatizada.
+## Description
+This project implements and visualizes sorting algorithms in Python using the stddraw graphics library. It includes logical and animated functions for:
+* Bubble Sort
+* Insertion Sort
+* Selection Sort
 
-## Estructura del Proyecto
-- `/assets`: Contiene el diagrama de flujo (`flux_flowchart.png`) que ilustra la lógica del sistema.
-- `/docs`: Incluye el pseudocódigo detallado (`pseudocode.md`) del algoritmo.
-- `/logs`: Directorio de auditoría donde se generan los registros de ejecución (`app.log`) en tiempo real.
-- `main.py`: Script principal de la aplicación en Python.
+---
 
-## Características
-- **Priorización Automática**: Clasifica tareas por nivel de urgencia (Alta/Media/Baja).
-- **Sistema de Auditoría**: Registro automático de eventos, entradas de usuario y errores mediante el módulo `logging`.
-- **Diseño Modular**: Lógica clara basada en un esquema IPO (Input, Process, Output).
+## Folder Contents
+* sorting_algorithms.py: The main program containing the seven required functions (bubble_sort, insertion_sort, selection_sort, draw_bars, bubble_sort_animated, insertion_sort_animated, selection_sort_animated) with INPUT, PROCESS, and OUTPUT comments.
+* sorting_algorithms_ppp.txt: The Pseudocode Programming Process (PPP) written before coding.
+* sorting_algorithms_flowchart.png: The flowcharts representing the program logic.
 
-## Ejecución
-Para ejecutar el sistema Flux:
-1. Asegúrate de tener instalado Python 3.x.
-2. Clona este repositorio.
-3. Ejecuta el programa en tu terminal:
-   ```bash
-   python main.py
+---
 
+## AI Use Declaration
+I declare that Artificial Intelligence tools were used to help structure the pseudocode, verify the logic of the graphic animations, and design the flowcharts. The final code was personally reviewed, adapted, and tested to meet the academic requirements of the course.
