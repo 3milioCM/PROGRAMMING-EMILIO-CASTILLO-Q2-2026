@@ -32,7 +32,7 @@ def main():
     try:
         ancho, alto, max_iter = int(config["ancho"]), int(config["alto"]), int(config["max_iter"])
         
-        with open("clase.csv", 'w') as salida:
+        with open("mandelbrot.csv", 'w') as salida:
             salida.write("fila,columna,iteraciones\n")
             
             for fila in range(alto):
@@ -49,7 +49,7 @@ def main():
                     
                     salida.write(f"{fila},{columna},{iteraciones}\n")
         
-        print("Generación de fractal completada con éxito en 'clase.csv'.")
+        print("Generación de fractal completada con éxito en 'mandelbrot.csv'.")
         logging.info("Fractal generado correctamente.")
 
     except Exception as e:
