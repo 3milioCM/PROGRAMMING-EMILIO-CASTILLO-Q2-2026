@@ -1,0 +1,129 @@
+// 1. Countdown Recursivo
+FUNCION recursiva(n)
+    SI TIPO(n) != ENTIER O n < 0 ENTONCES
+        MOSTRAR "Error en parámetro"
+        RETORNAR Nulo
+    FIN SI
+    SI n == 0 ENTONCES
+        RETORNAR "Done!"
+    SINO
+        MOSTRAR n
+        RETORNAR recursiva(n - 1)
+    FIN SI
+FIN FUNCION
+
+// 2. Fibonacci
+FUNCION fibonacci(n)
+    SI TIPO(n) != ENTIER O n < 0 ENTONCES
+        MOSTRAR "Error en índice"
+        RETORNAR Nulo
+    FIN SI
+    SI n == 0 O n == 1 ENTONCES
+        RETORNAR n
+    SINO
+        RETORNAR fibonacci(n - 1) + fibonacci(n - 2)
+    FIN SI
+FIN FUNCION
+
+// 3. Factorial
+FUNCION factorial(n)
+    SI TIPO(n) != ENTIER O n < 0 ENTONCES
+        MOSTRAR "Error en valor"
+        RETORNAR Nulo
+    FIN SI
+    SI n == 0 O n == 1 ENTONCES
+        RETORNAR 1
+    SINO
+        RETORNAR factorial(n - 1) * n
+    FIN SI
+FIN FUNCION
+
+// 4. Multiplicación Recursiva
+FUNCION multiplicacion_recursiva(n, m)
+    SI TIPO(m) != ENTIER ENTONCES
+        MOSTRAR "Error: m debe ser entero"
+        RETORNAR Nulo
+    FIN SI
+    SI m < 0 ENTONCES
+        RETORNAR -multiplicacion_recursiva(n, -m)
+    FIN SI
+    SI m == 0 ENTONCES
+        RETORNAR 0
+    SINO
+        RETORNAR multiplicacion_recursiva(n, m - 1) + n
+    FIN SI
+FIN FUNCION
+
+// 5. División Entera Recursiva
+FUNCION division_entera_recursiva(dividendo, divisor)
+    SI divisor == 0 ENTONCES
+        MOSTRAR "Error: División por cero"
+        RETORNAR Nulo
+    FIN SI
+    SI dividendo < 0 ENTONCES ... // Manejo de signos negativos
+    
+    SI (dividendo - divisor) < 0 ENTONCES
+        RETORNAR 0
+    SINO
+        RETORNAR division_entera_recursiva(dividendo - divisor, divisor) + 1
+    FIN SI
+FIN FUNCION
+
+// 6. Potencia Recursiva
+FUNCION potencia_recursiva(base, exponente)
+    SI TIPO(exponente) != ENTIER ENTONCES
+        RETORNAR Nulo
+    FIN SI
+    SI exponente < 0 ENTONCES
+        SI base == 0 ENTONCES RETORNAR Nulo (División por cero)
+        RETORNAR 1 / potencia_recursiva(base, -exponente)
+    FIN SI
+    SI exponente == 0 ENTONCES
+        RETORNAR 1
+    SINO
+        RETORNAR potencia_recursiva(base, exponente - 1) * base
+    FIN SI
+FIN FUNCION
+
+// 7. Serie de Collatz
+FUNCION serie_collatz(n)
+    SI TIPO(n) != ENTIER O n <= 0 ENTONCES
+        MOSTRAR "Error: Entrada debe ser entero positivo"
+        RETORNAR Nulo
+    FIN SI
+    SI n == 1 ENTONCES
+        MOSTRAR "END!"
+        RETORNAR 0
+    SINO
+        SI n ES PAR ENTONCES
+            siguiente = n / 2
+        SINO
+            siguiente = (3 * n) + 1
+        FIN SI
+        MOSTRAR siguiente
+        RETORNAR serie_collatz(siguiente)
+    FIN SI
+FIN FUNCION
+
+// 8. Aplanar JSON
+FUNCION aplanar_json(objeto, clave_padre="", separador=".")
+    elementos = LISTA_VACIA
+    
+    SI objeto ES LISTA ENTONCES
+        coleccion = PARES(indice, valor DE objeto)
+    SINO SI objeto ES DICCIONARIO ENTONCES
+        coleccion = PARES(clave, valor DE objeto)
+    SINO
+        RETORNAR {clave_padre: objeto}
+    FIN SI
+
+    PARA CADA (clave, valor) EN coleccion HACER
+        nueva_clave = CONCATENAR(clave_padre, separador, clave)
+        SI valor ES DICCIONARIO O LISTA ENTONCES
+            EXTENDER elementos CON aplanar_json(valor, nueva_clave, separador)
+        SINO
+            AGREGAR (nueva_clave, valor) A elementos
+        FIN PARA
+    
+    RETORNAR CONVERTIR_A_DICCIONARIO(elementos)
+FIN FUNCION
