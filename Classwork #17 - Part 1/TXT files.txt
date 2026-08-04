@@ -1,0 +1,34 @@
+PPP:
+FUNCTION initialize_application():
+    DETERMINE absolute path to directory containing this script
+    BUILD full path to "config.txt"
+    
+    SET default_width = 800
+    SET default_height = 600
+    
+    TRY:
+        OPEN file at config path in read mode
+        FOR each line in file:
+            STRIP whitespace from line
+            IF line starts with "width=":
+                PARSE integer value after "width="
+            ELSE IF line starts with "height=":
+                PARSE integer value after "height="
+        CLOSE file
+    CATCH FileNotFoundError:
+        LOG warning that config was missing; fall back to defaults
+    CATCH ValueError:
+        LOG warning that config values were corrupted; fall back to defaults
+
+    INITIALIZE Pygame display system
+    CREATE window with parsed width and height
+    RETURN screen instance and dimensions
+
+config.txt:
+
+width=800
+height=600
+line_color=255,255,255
+bg_color=30,30,30
+space=0.15
+vertical_lines=7
