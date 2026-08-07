@@ -6,4 +6,4 @@ vertical_lines=7
 horizontal_lines=9
 space=0.15
 speed=60
-ship_color=255,0,255
+ship_color=255,0,255 
